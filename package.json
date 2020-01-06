@@ -1,0 +1,23 @@
+{
+  "name": "data-type-checker",
+  "version": "1.0.0",
+  "description": "check js data type",
+  "main": "src/dataTypeCheck.js",
+  "files":["dist"],
+  "scripts": {
+    "test": "mocha test/test.js",
+    "build": "gulp minify"
+  },
+  "keywords": [
+    "data",
+    "type",
+    "checker"
+  ],
+  "author": "zwzw911",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-minify": "^3.1.0",
+    "mocha": "^6.2.2"
+  }
+}

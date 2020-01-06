@@ -1,5 +1,5 @@
 {
-  "name": "data-type-checker",
+  "name": "data-type-check",
   "version": "1.0.0",
   "description": "check js data type",
   "main": "src/dataTypeCheck.js",
@@ -7,6 +7,10 @@
   "scripts": {
     "test": "mocha test/test.js",
     "build": "gulp minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zwzw911/dataTypeCheck.git"
   },
   "keywords": [
     "data",

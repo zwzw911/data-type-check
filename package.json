@@ -6,7 +6,7 @@
   "files":["dist"],
   "scripts": {
     "test": "mocha test/test.js",
-    "build": "gulp minify"
+    "build": "gulp default"
   },
   "repository": {
     "type": "git",

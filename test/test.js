@@ -130,7 +130,7 @@ describe('all test', function() {
             expectResult.fill(false)
         })
 
-        it('base.isSetValue',function(){
+        it('extend.isSetValue',function(){
             expectResult.fill(true)
             expectResult[11]=false
             expectResult[13]=false
@@ -138,7 +138,7 @@ describe('all test', function() {
             testData.map(x=>realResult.push(extend.isSetValue(x)))
             assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
         })
-        it('base.isEmpty',function(){
+        it('extend.isEmpty',function(){
             expectResult[7]=true
             expectResult[9]=true
             expectResult[11]=true
@@ -148,28 +148,28 @@ describe('all test', function() {
             testData.map(x=>realResult.push(extend.isEmpty(x)))
             assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
         })
-        it('base.isNumberNegative',function(){
+        it('extend.isNumberNegative',function(){
             expectResult[3]=true
             expectResult[4]=true
             let realResult=[]
-            testData.map(x=>realResult.push(extend.isNumberNegative(x)))
+            testData.map(x=>realResult.push(base.isNumber(x) && extend.isNumberNegative(x)))
             assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
         })
-        it('base.isNumberPositive',function(){
+        it('extend.isNumberPositive',function(){
             expectResult[0]=true
             expectResult[1]=true
             expectResult[2]=true
             let realResult=[]
-            testData.map(x=>realResult.push(extend.isNumberPositive(x)))
+            testData.map(x=>realResult.push(base.isNumber(x) && extend.isNumberPositive(x)))
             assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
         })
-        it('base.isFolder',function(){
+        it('extend.isFolder',function(){
             expectResult[22]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFolder(x)))
             assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
         })
-        it('base.isFile',function(){
+        it('extend.isFile',function(){
             expectResult[23]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFile(x)))

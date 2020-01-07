@@ -78,11 +78,12 @@ const extend={
     },
     //必须保证传入的变量是Number
     isNumberPositive(value) {
-        return base.isNumber(value)  && Math.sign(value) === 1
+        // return base.isNumber(value)  && Math.sign(value) === 1
+        return  Math.sign(value) === 1
     },
     //必须保证传入的变量是Number
     isNumberNegative(value) {
-        return base.isNumber(value) && Math.sign(value) === -1
+        return Math.sign(value) === -1
     },
     isFolder(path) {
         return base.isString(path) && fs.existsSync(path) && fs.statSync(path).isDirectory()

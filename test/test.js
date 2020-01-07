@@ -51,14 +51,14 @@ describe('all test', function() {
             expectResult[7]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isArray(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isObject',function(){
             expectResult[9]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isObject(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isString',function(){
@@ -76,14 +76,14 @@ describe('all test', function() {
             expectResult[23]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isString(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isDate',function(){
             expectResult[19]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isDate(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isInt',function(){
@@ -93,7 +93,7 @@ describe('all test', function() {
             // expectResult[4]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isInt(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isNumber',function(){
@@ -104,7 +104,7 @@ describe('all test', function() {
             expectResult[4]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isNumber(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isFloat',function(){
@@ -112,14 +112,14 @@ describe('all test', function() {
             expectResult[4]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isFloat(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
         it('base.isBoolean',function(){
             expectResult[5]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isBoolean(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
     })
 
@@ -136,7 +136,7 @@ describe('all test', function() {
             expectResult[13]=false
             let realResult=[]
             testData.map(x=>realResult.push(extend.isSetValue(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('extend.isEmpty',function(){
             expectResult[7]=true
@@ -146,14 +146,14 @@ describe('all test', function() {
             expectResult[21]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isEmpty(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('extend.isNumberNegative',function(){
             expectResult[3]=true
             expectResult[4]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isNumber(x) && extend.isNumberNegative(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('extend.isNumberPositive',function(){
             expectResult[0]=true
@@ -161,25 +161,25 @@ describe('all test', function() {
             expectResult[2]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isNumber(x) && extend.isNumberPositive(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('extend.isFolder',function(){
             expectResult[22]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFolder(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('extend.isFile',function(){
             expectResult[23]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFile(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
         it('base.isFileReadable',function(){
             expectResult[23]=true
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFileReadable(x)))
-            assert.deepStrictEqual(expectResult.join(' '),realResult.join(' '))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })        
     })
 })

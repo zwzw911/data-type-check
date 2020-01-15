@@ -4,7 +4,7 @@
 'use strict'
 /*被测函数*/
 // const {base,extend}=require('../dist/dataTypeCheck-min')
-const {base,extend}=require('../src/dataTypeCheck')
+const {base,extend,mysql}=require('../src/dataTypeCheck')
 const assert=require('assert')
 const os=require('os')
 
@@ -181,5 +181,128 @@ describe('all test', function() {
             testData.map(x=>realResult.push(extend.isFileReadable(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })        
+    })
+
+    describe('mysql', function() {
+        let testDataSign=[
+            [-129,128,-128,127,0],
+            [-32769,32768,-32768,32767,0],
+            [-8388609,8388608,-8388608,8388607,0],
+            [-2147483649,2147483648,-2147483648,2147483647,0],
+            [-9223372036854775809n,9223372036854775808n,-9223372036854775808n,9223372036854775807n,0],
+        ]
+        let testDataUnsign=[
+            [-1,256,0,255],
+            [-1,65536,0,65535],
+            [-1,16777216,0,16777215],
+            [-1,4294967296,0,4294967295],
+            [-1,18446744073709551616n,0,18446744073709551615n],
+        ]
+
+        let unsign,func,data
+        it('mysql.isTinyInt unsign is false',function(){
+            unsign=false
+            func=mysql.isTinyInt
+            data=testDataSign[0]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isSmallInt unsign is false',function(){
+            unsign=false
+            func=mysql.isSmallInt
+            data=testDataSign[1]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isMediumInt unsign is false',function(){
+            unsign=false
+            func=mysql.isMediumInt
+            data=testDataSign[2]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isInt unsign is false',function(){
+            unsign=false
+            func=mysql.isInt
+            data=testDataSign[3]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isBigInt unsign is false',function(){
+            unsign=false
+            func=mysql.isBigInt
+            data=testDataSign[4]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+
+
+
+        unsign=true
+        it('mysql.isTinyInt unsign is true',function(){
+            unsign=true
+            func=mysql.isTinyInt
+            data=testDataUnsign[0]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            // assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isSmallInt unsign is true',function(){
+            unsign=true
+            func=mysql.isSmallInt
+            data=testDataUnsign[1]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            // assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isMediumInt unsign is true',function(){
+            unsign=true
+            func=mysql.isMediumInt
+            data=testDataUnsign[2]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            // assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isInt unsign is true',function(){
+            unsign=true
+            func=mysql.isInt
+            data=testDataUnsign[3]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            // assert.deepStrictEqual(func(data[4],unsign),true)
+        })
+        it('mysql.isBigInt unsign is true',function(){
+            unsign=true
+            func=mysql.isBigInt
+            data=testDataUnsign[4]
+            assert.deepStrictEqual(func(data[0],unsign),false)
+            assert.deepStrictEqual(func(data[1],unsign),false)
+            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[3],unsign),true)
+            // assert.deepStrictEqual(func(data[4],unsign),true)
+        })
     })
 })

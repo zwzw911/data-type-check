@@ -100,7 +100,52 @@ const extend={
         return this.isString(value) && regex.objectId.test(value)
     }*/
 }
+// const {log}=console
+const mysql={
+    /*
+    *   @value:必须预先检测是整数
+    *   @unsign：是否为无符号，默认是无符号
+    *   return; boolean
+    *   */
+    isTinyInt(value,unsign=true){
+        if(true===unsign){
+            return value>=0 && value<=255
+        }else{
+            return value>=-128 && value<=127
+        }
+    },
+    isSmallInt(value,unsign=true){
+        if(true===unsign){
+            return value>=0 && value<=65535
+        }else{
+            return value>=-32768 && value<=32767
+        }
+    },
+    isMediumInt(value,unsign=true){
+        if(true===unsign){
+            return value>=0 && value<=16777215
+        }else{
+            return value>=-8388608 && value<=8388607
+        }
+    },
+    isInt(value,unsign=true){
+        if(true===unsign){
+            return value>=0 && value<=4294967295
+        }else{
+            return value>=-2147483648 && value<=2147483647
+        }
+    },
+    //JS中，bigInt使用n表示
+    isBigInt(value,unsign=true){
+        if(true===unsign){
+            return value>=0 && value<=18446744073709551615n
+        }else{
+            return value>=-9223372036854775808n && value<=9223372036854775807n
+        }
+    },
+}
 module.exports={
     base,
-    extend
+    extend,
+    mysql,
 }

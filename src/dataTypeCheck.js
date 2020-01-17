@@ -103,11 +103,14 @@ const extend={
 // const {log}=console
 const mysql={
     /*
-    *   @value:必须预先检测是整数
+    *   @value:
     *   @unsign：是否为无符号，默认是无符号
     *   return; boolean
     *   */
     isTinyInt(value,unsign=true){
+        if(false===base.isInt(value)){
+            return false
+        }
         if(true===unsign){
             return value>=0 && value<=255
         }else{
@@ -115,6 +118,9 @@ const mysql={
         }
     },
     isSmallInt(value,unsign=true){
+        if(false===base.isInt(value)){
+            return false
+        }
         if(true===unsign){
             return value>=0 && value<=65535
         }else{
@@ -122,6 +128,9 @@ const mysql={
         }
     },
     isMediumInt(value,unsign=true){
+        if(false===base.isInt(value)){
+            return false
+        }
         if(true===unsign){
             return value>=0 && value<=16777215
         }else{
@@ -129,6 +138,9 @@ const mysql={
         }
     },
     isInt(value,unsign=true){
+        if(false===base.isInt(value)){
+            return false
+        }
         if(true===unsign){
             return value>=0 && value<=4294967295
         }else{
@@ -137,6 +149,9 @@ const mysql={
     },
     //JS中，bigInt使用n表示
     isBigInt(value,unsign=true){
+        if(false===base.isInt(value)){
+            return false
+        }
         if(true===unsign){
             return value>=0 && value<=18446744073709551615n
         }else{

@@ -13,9 +13,9 @@ describe('all test', function() {
         console.error('test case not support run in linux')
         return
     }
-    let expectResult=new Array(24)
+    let expectResult=new Array(25)
 
-    let  testData=new Array(24)
+    let  testData=new Array(25)
     testData[0]=1
     testData[1]=1.99999999999999999999999       //是否当成整数2处理
     testData[2]=1.9999999                       //是否当成浮点数
@@ -40,6 +40,7 @@ describe('all test', function() {
     testData[21]=''
     testData[22]='C:/'
     testData[23]='C:/Windows/win.ini'
+    testData[24]=/a/
 
     describe('base', function() {
         //Rest all expected data to false
@@ -119,6 +120,13 @@ describe('all test', function() {
             expectResult[5]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isBoolean(x)))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
+        })
+
+        it('base.isRegExp',function(){
+            expectResult[24]=true
+            let realResult=[]
+            testData.map(x=>realResult.push(base.isRegExp(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
     })

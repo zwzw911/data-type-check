@@ -46,8 +46,11 @@ const base= {
 
     isBoolean(value){
         return (typeof value === 'boolean')
-    }
+    },
 
+    isRegExp(value){
+        return Object.prototype.toString.call(value).includes('RegExp')
+    }
 }
 
 //扩展检测

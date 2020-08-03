@@ -22,6 +22,9 @@ check value is integer or not. Use ES6 internal function Number.isInteger(). ret
 check value is float or not. return boolean.  
 `base.isBoolean(value)`  
 check value is boolean or not. return boolean.   
+`base.isRegExp(value)`  
+check value is RegExp or not. return boolean. Not use `value instanceof RegExp` since synax when handle string link 'C:\'      
+
 
 `extend.isSetValue(value)` 
 check value is undefined/null or not. return boolean.   

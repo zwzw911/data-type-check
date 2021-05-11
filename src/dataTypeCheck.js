@@ -22,11 +22,11 @@ const base= {
     //检查是否有效日期; 返回boolean
     //只接受字符形式的日期
     isDate(date) {
-        return moment.utc(date,['YYYY-MM-DD',moment.ISO_8601],true).isValid()
+        return moment(date,['YYYY-MM-DD',moment.ISO_8601],true).isValid()
     },
     isDateTime(date){
-        console.log(date)
-        return moment.utc(date,['YYYY-MM-DD HH:mm:ss',moment.ISO_8601],true).isValid()
+        // console.log(date)
+        return moment(date,['YYYY-MM-DD HH:mm:ss',moment.ISO_8601],true).isValid()
     },
     //不考虑字符串且只考虑有限数字
     isInt(value) {

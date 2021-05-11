@@ -4,7 +4,7 @@
 'use strict'
 //1. npm install --global gulp-cli
 //2. npm install gulp gulp-minify --save-dev
-
+//3. gulp default
 const gulp = require('gulp');
 const minify = require('gulp-minify');
 

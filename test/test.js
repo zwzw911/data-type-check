@@ -7,15 +7,16 @@
 const {base,extend,mysql}=require('../src/dataTypeCheck')
 const assert=require('assert')
 const os=require('os')
+const moment=require("moment")
 
 describe('all test', function() {
     if('Windows_NT'!==os.type()){
         console.error('test case not support run in linux')
         return
     }
-    let expectResult=new Array(25)
 
-    let  testData=new Array(25)
+
+    let  testData=new Array()
     testData[0]=1
     testData[1]=1.99999999999999999999999       //是否当成整数2处理
     testData[2]=1.9999999                       //是否当成浮点数
@@ -40,7 +41,14 @@ describe('all test', function() {
     testData[21]=''
     testData[22]='C:/'
     testData[23]='C:/Windows/win.ini'
-    testData[24]=/a/
+    testData[24]=/a/i
+
+    testData[25]=new Date().toLocaleString()                  //带中文的字符   false
+    testData[26]=new Date().toISOString()                  //true
+    testData[27]=moment().toISOString()             //true
+    testData[28]=moment().add(1,'days').toISOString()                   //true
+
+    let expectResult=new Array(testData.length)
 
     describe('base', function() {
         //Rest all expected data to false
@@ -75,6 +83,10 @@ describe('all test', function() {
             expectResult[21]=true
             expectResult[22]=true
             expectResult[23]=true
+            expectResult[25]=true   //字符形式的日期
+            expectResult[26]=true   //字符形式的日期
+            expectResult[27]=true   //字符形式的日期
+            expectResult[28]=true   //字符形式的日期
             let realResult=[]
             testData.map(x=>realResult.push(base.isString(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
@@ -82,11 +94,28 @@ describe('all test', function() {
 
         it('base.isDate',function(){
             expectResult[19]=true
+            expectResult[20]=false
+
+            expectResult[25]=false  //带中文
+            expectResult[26]=true
+            expectResult[27]=true
+            expectResult[28]=true
             let realResult=[]
             testData.map(x=>realResult.push(base.isDate(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
+        it('base.isDateTime',function(){
+            expectResult[19]=true
+            expectResult[20]=false
 
+            expectResult[25]=false  //带中文
+            expectResult[26]=true
+            expectResult[27]=true
+            expectResult[28]=true
+            let realResult=[]
+            testData.map(x=>realResult.push(base.isDateTime(x)))
+            assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
+        })
         it('base.isInt',function(){
             expectResult[0]=true
             expectResult[1]=true
@@ -188,7 +217,7 @@ describe('all test', function() {
             let realResult=[]
             testData.map(x=>realResult.push(extend.isFileReadable(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
-        })        
+        })
     })
 
     describe('mysql', function() {
@@ -248,16 +277,16 @@ describe('all test', function() {
             assert.deepStrictEqual(func(data[3],unsign),true)
             assert.deepStrictEqual(func(data[4],unsign),true)
         })
-        it('mysql.isBigInt unsign is false',function(){
+/*        it('mysql.isBigInt unsign is false',function(){
             unsign=false
             func=mysql.isBigInt
             data=testDataSign[4]
             assert.deepStrictEqual(func(data[0],unsign),false)
             assert.deepStrictEqual(func(data[1],unsign),false)
-            assert.deepStrictEqual(func(data[2],unsign),true)
-            assert.deepStrictEqual(func(data[3],unsign),true)
+            assert.deepStrictEqual(func(data[2],unsign),false)
+            assert.deepStrictEqual(func(data[3],unsign),false)
             assert.deepStrictEqual(func(data[4],unsign),true)
-        })
+        })*/
 
 
 
@@ -302,15 +331,15 @@ describe('all test', function() {
             assert.deepStrictEqual(func(data[3],unsign),true)
             // assert.deepStrictEqual(func(data[4],unsign),true)
         })
-        it('mysql.isBigInt unsign is true',function(){
+/*        it('mysql.isBigInt unsign is true',function(){
             unsign=true
             func=mysql.isBigInt
             data=testDataUnsign[4]
             assert.deepStrictEqual(func(data[0],unsign),false)
             assert.deepStrictEqual(func(data[1],unsign),false)
-            assert.deepStrictEqual(func(data[2],unsign),true)
+            assert.deepStrictEqual(func(data[2],unsign),false)
             assert.deepStrictEqual(func(data[3],unsign),true)
             // assert.deepStrictEqual(func(data[4],unsign),true)
-        })
+        })*/
     })
 })

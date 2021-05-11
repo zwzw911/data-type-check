@@ -1,13 +1,10 @@
 'use strict'
 const fs=require('fs')
-
+const moment=require("moment")
 //基本类型检测
 const base= {
     isArray(obj) {
-        //return obj && typeof obj === 'object' && Array == obj.constructor;
-        // return obj instanceof Array
         return Array.isArray(obj)  //ES6引入的新方法
-        // return typeof obj === 'object'  && obj!==null && Array == obj.constructor;
     },
 
     isObject(obj){
@@ -25,9 +22,11 @@ const base= {
     //检查是否有效日期; 返回boolean
     //只接受字符形式的日期
     isDate(date) {
-
-        // let parsedDate=new Date(date)
-        return this.isString(date) && new Date(date).toLocaleString() !==  'Invalid Date'
+        return moment.utc(date,['YYYY-MM-DD',moment.ISO_8601],true).isValid()
+    },
+    isDateTime(date){
+        console.log(date)
+        return moment.utc(date,['YYYY-MM-DD HH:mm:ss',moment.ISO_8601],true).isValid()
     },
     //不考虑字符串且只考虑有限数字
     isInt(value) {
@@ -150,8 +149,9 @@ const mysql={
             return value>=-2147483648 && value<=2147483647
         }
     },
-    //JS中，bigInt使用n表示
-    isBigInt(value,unsign=true){
+    //JS中，bigInt使用n表示。
+    //为了避免混淆，mysql不使用bigint
+/*    isBigInt(value,unsign=true){
         if(false===base.isInt(value)){
             return false
         }
@@ -160,7 +160,7 @@ const mysql={
         }else{
             return value>=-9223372036854775808n && value<=9223372036854775807n
         }
-    },
+    },*/
 }
 module.exports={
     base,

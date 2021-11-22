@@ -158,6 +158,28 @@ describe('all test', function() {
             testData.map(x=>realResult.push(base.isRegExp(x)))
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
+
+        it('base.isStringDateTime',function(){
+            let newTestData=[
+                1,
+                "1",
+                1.1,
+                "1.1",
+                "abd",
+                "1899-01-01",//只能处理20/21世纪的日期
+                "1900-13-21",//月份错误
+                "1900-3-21",//月份错误
+                "1900-02-31",//日期错误
+                "1900-12-41",//日期错误
+                "1900-12-1",//日期错误
+                "2021-11-14"
+            ]
+            let newExpectResult=new Array(newTestData.length).fill(false)
+            newExpectResult[11]=true
+            let realResult=[]
+            newTestData.map(x=>realResult.push(base.isStringDateTime(x)))
+            assert.deepStrictEqual(realResult.join(' '),newExpectResult.join(' '))
+        })
     })
 
 

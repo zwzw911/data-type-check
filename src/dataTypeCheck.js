@@ -1,6 +1,7 @@
 'use strict'
 const fs=require('fs')
 const moment=require("moment")
+
 //基本类型检测
 const base= {
     isArray(obj) {
@@ -49,6 +50,20 @@ const base= {
 
     isRegExp(value){
         return Object.prototype.toString.call(value).includes('RegExp')
+    },
+    /** 从客户端输入的日期，必须是字符形式，以便用正则进行过滤。因为moment当前会接受整数（包括字符形式的整数），转换成合法的日期。
+     * */
+    isStringDateTime(value,reg=/^(?:19|20)\d{2}-(?:0\d|1[1-2])-(?:0\d|[1-2]\d|3[0-1])/){
+        //首先判断是否为字符
+        if(false===this.isString(value)){
+            return false
+        }
+        //然后判断是否正确匹配（大致匹配）
+        if(false===reg.test(value)){
+            return false
+        }
+        //最后用moment判断是否合法
+        return moment(value).isValid()
     }
 }
 

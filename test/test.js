@@ -191,15 +191,20 @@ describe('all test', function() {
                 "2021-11-14Z24:12:12",
                 "2021-11-14Z23:60:12",
                 "2021-11-14Z23:00:60",
-                "2021-11-14 23:00:50Z", //
+                "2021-11-14 23:00:50Z", // idx:9
                 "2021-11-14T23:00:50Z", //
                 "2021-11-14T23:00:50  ",//用trim，去掉了结尾的空白，所以能pass
-                "2021-11-14  23:00:50  ",//不能有1个以上空白
+                "2021-11-14 23:00:50  ",//不能有1个以上空白，但是内部会把结尾的空白去掉
+                "2021-11-14  23:00:50  ",//不能有1个以上空白，但是内部会把结尾的空白去掉
+                "2021-11-14T23:00:50.120Z",//带毫秒
             ]
             let newExpectResult=new Array(newTestData.length).fill(false)
             newExpectResult[9]=true
             newExpectResult[10]=true
             newExpectResult[11]=true
+            newExpectResult[12]=true
+            newExpectResult[13]=false
+            newExpectResult[14]=true
             // newExpectResult[12]=true
             let realResult=[]
             newTestData.map(x=>realResult.push(base.isStringDateTime(x)))

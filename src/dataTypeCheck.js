@@ -64,7 +64,7 @@ const base= {
         //最后用moment判断是否合法
         return moment(value).isValid()
     },
-    isStringDateTime(value,reg=/^(?:19|20)\d{2}-(?:0\d|1[1-2])-(?:0\d|[1-2]\d|3[0-1])(?:\s|T)(?:[0|1]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\s*|Z)$/){
+    isStringDateTime(value,reg=/^(?:19|20)\d{2}-(?:0\d|1[1-2])-(?:0\d|[1-2]\d|3[0-1])(?:\s|T)(?:[0|1]\d|2[0-3]):[0-5]\d:[0-5]\d(\.\d{3})?(?:\s*|Z)?$/){
         //首先判断是否为字符
         if(false===this.isString(value)){
             return false

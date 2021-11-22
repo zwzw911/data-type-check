@@ -1,6 +1,6 @@
 {
   "name": "data-type-check",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "check js data type",
   "main": "src/dataTypeCheck.js",
   "files": [

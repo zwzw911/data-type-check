@@ -159,7 +159,7 @@ describe('all test', function() {
             assert.deepStrictEqual(realResult.join(' '),expectResult.join(' '))
         })
 
-        it('base.isStringDateTime',function(){
+        it('base.isStringDate',function(){
             let newTestData=[
                 1,
                 "1",
@@ -176,6 +176,31 @@ describe('all test', function() {
             ]
             let newExpectResult=new Array(newTestData.length).fill(false)
             newExpectResult[11]=true
+            let realResult=[]
+            newTestData.map(x=>realResult.push(base.isStringDate(x)))
+            assert.deepStrictEqual(realResult.join(' '),newExpectResult.join(' '))
+        })
+        it('base.isStringDateTime',function(){
+            let newTestData=[
+                1,
+                "1",
+                1.1,
+                "1.1",
+                "abd",
+                "2021-11-14Z",
+                "2021-11-14Z24:12:12",
+                "2021-11-14Z23:60:12",
+                "2021-11-14Z23:00:60",
+                "2021-11-14 23:00:50Z", //
+                "2021-11-14T23:00:50Z", //
+                "2021-11-14T23:00:50  ",//用trim，去掉了结尾的空白，所以能pass
+                "2021-11-14  23:00:50  ",//不能有1个以上空白
+            ]
+            let newExpectResult=new Array(newTestData.length).fill(false)
+            newExpectResult[9]=true
+            newExpectResult[10]=true
+            newExpectResult[11]=true
+            // newExpectResult[12]=true
             let realResult=[]
             newTestData.map(x=>realResult.push(base.isStringDateTime(x)))
             assert.deepStrictEqual(realResult.join(' '),newExpectResult.join(' '))
